@@ -11,7 +11,12 @@ public class Event implements comparable<Event>{
     }
 
     @Override
-    public boolean equals(Object anotherObject) {
+    public boolean equals(Object obj) {
+        if (obj instanceof Event) {
+            Event event = (Event) obj;
+            // insert some comparable primitive value attribute
+            return true;
+        }
         return false;
     }
 
