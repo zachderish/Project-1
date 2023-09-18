@@ -1,4 +1,4 @@
-public class Event implements comparable<Event>{
+public class Event implements Comparable<Event>{
     private Date date; //the event date
     private Timeslot startTime; //the starting time
     private Location location;
@@ -20,7 +20,15 @@ public class Event implements comparable<Event>{
         return false;
     }
 
+    @Override
     public int compareTo(Date date) {
+        // insert some comparable primitive value attribute
+        /*
+        if ((this.objectAttribute(this.objectAttribute)) > 0 )
+            return 1;
+        if ((this.objectAttribute(this.objectAttribute)) < 0 )
+            return -1;
+         */
         return 0;
     }
 
