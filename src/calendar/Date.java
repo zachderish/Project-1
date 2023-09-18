@@ -54,7 +54,7 @@ public class Date implements Comparable<Date>{
             return 31;
         }
         else {
-            if(isLeapYear(year)) { // depending if February is a leap year it will either have 28 or 29 days
+            if(isLeapYear(year)) { // depending on if February is a leap year it will either have 28 or 29 days
                 return 29;
             }
         }
@@ -110,5 +110,46 @@ public class Date implements Comparable<Date>{
 
         return true;
     }
+
+    /**
+     * compare two date objects based on year, month and day
+     * @param date the second Date object in the comparison
+     * @return 1 if date1 > date2, -1 if date1 < date2, and 0 otherwise
+     */
+    @Override
+    public int compareTo(Date date) {
+        // compare year
+        if (this.year > date.year)
+            return 1;
+        if (this.year < date.year)
+            return -1;
+        // compare month
+        if (this.month > date.month)
+            return 1;
+        if (this.month < date.month)
+            return -1;
+        // compare day
+        if (this.day > date.day)
+            return 1;
+        if (this.day < date.day)
+            return -1;
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        Date date1 = new Date(2023, 9, 18);
+        Date date2 = new Date(2024, 9, 18);
+        boolean validCheck = date1.isValid(date1);
+        System.out.println(validCheck);
+        boolean validCheck2 = date1.isValid(date1);
+        System.out.println(validCheck2);
+
+        System.out.println(date1.compareTo(date2));
+        System.out.println(date2.compareTo(date1));
+        Date date3 = new Date(2023, 9, 18);
+        System.out.println(date1.compareTo(date3));
+
+    }
+
 
 }
