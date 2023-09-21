@@ -23,11 +23,9 @@ public class Contact {
     }
 
     public boolean isValid(Department department, String email) {
-        if(!validEmail){
-            return false;
-        }
-        return true;
+        return validEmail(email);
     }
+
 
 }
  //test

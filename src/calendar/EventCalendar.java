@@ -3,7 +3,7 @@ package calendar;
 import calendar.Event;
 
 public class EventCalendar {
-    private Event[] events; //the array holding the list of events
+ /*  private Event[] events; //the array holding the list of events
     private int numEvents; //current number of events in the array
 
     private int find(Event event) { } //search an event in the list
@@ -15,4 +15,6 @@ public class EventCalendar {
     public void printByDate() { } //ordered by date and timeslot
     public void printByCampus() { } //ordered by campus and building/room
     public void printByDepartment(){ } //ordered by department
+  */
+
 }
