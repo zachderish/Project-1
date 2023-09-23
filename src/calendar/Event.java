@@ -10,7 +10,7 @@ public class Event implements Comparable<Event>{
 
     //Event Constructor
 
-    public Event(){
+    public Event(){ //constructor with no parameters : purpose for finding empty objects in array as this would be the default intialization
         this.date = null;
         this.startTime = null;
         this.location = null;
