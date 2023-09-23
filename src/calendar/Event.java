@@ -8,6 +8,24 @@ public class Event implements Comparable<Event>{
     private Contact contact; //include the department name and email
     private int duration; //in minutes
 
+    //Event Constructor
+
+    public Event(){
+        this.date = null;
+        this.startTime = null;
+        this.location = null;
+        this.contact = null;
+        this.duration = 0;
+    }
+    public Event (Date date, Timeslot startTime, Location location, Contact contact, int duration){
+        this.date = date;
+        this.startTime = startTime;
+        this.location = location;
+        this.contact = contact;
+        this.duration = duration;
+    }
+
+
     @Override
     public String toString() {
         return "";
@@ -32,5 +50,9 @@ public class Event implements Comparable<Event>{
         if ((this.objectAttribute(this.objectAttribute)) < 0 )
             return -1;
         return 0;
+    }
+
+    public Date getDate() {
+        return date;
     }
 }

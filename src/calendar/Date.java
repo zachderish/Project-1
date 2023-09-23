@@ -80,7 +80,7 @@ public class Date implements Comparable<Date>{
      * @return false is year is before the current year, true otherwise
      */
     public boolean validYear(int year){
-        if(year < CURRENT_YEAR){ //if the year is not at least 1 its invalid
+        if(year < CURRENT_YEAR){
             return false;
         }
         return true;

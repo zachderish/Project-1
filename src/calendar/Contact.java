@@ -39,7 +39,7 @@ public class Contact {
      * @return true when department meets 5 acceptable departments, false otherwise
      */
     public boolean validDepartment(Department department){
-        return true;
+        return true; //reminder in case we forget this method needs updating
     }
 
     /**
