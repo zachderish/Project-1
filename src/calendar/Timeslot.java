@@ -1,7 +1,5 @@
 package calendar;
 
-
-    public enum Timeslot{
-
-        MORNING, AFTERNOON, EVENING;
+public enum Timeslot{
+        MORNING, AFTERNOON, EVENING
     }
