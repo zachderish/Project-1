@@ -37,7 +37,7 @@ public class EventCalendar {
 
     private boolean hasSpace() {
         for (int i = 0; i < events.length; i++) {
-            if (events[i].getDate == null) { //default constructor should set all params to null so if date is null object is null
+            if (events[i] == null) { //if theres a spot where object = null then it has space to add one
                 return true;
             }
         }
@@ -50,7 +50,7 @@ public class EventCalendar {
             grow(); //if the array does not have space we have to resize it
         }
         for (int i = 0; i < events.length; i++) {
-            if (events[i].date == null) { //adding it to the end of the list assuming all the ones before have proper info
+            if (events[i] == null) { //adding it to the end of the list/where ever theres an empty spot
                 events[i] = event;
                 return true; //once we added the event we can return
             }
