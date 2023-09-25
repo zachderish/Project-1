@@ -10,14 +10,6 @@ public class Event implements Comparable<Event> {
     private Contact contact; //include the department name and email
     private int duration; //in minutes
 
-    /* We will look for alternative solutions
-    public Event() { //constructor with no parameters : purpose for finding empty objects in array as this would be the default intialization
-        this.date = null;
-        this.startTime = null;
-        this.location = null;
-        this.contact = null;
-        this.duration = 0;
-    }*/
 
     /**
      * Event object constructor
