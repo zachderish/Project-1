@@ -61,5 +61,12 @@ public class Contact {
         return validEmail(email) && validDepartment(department);
     }
 
+    public Department getDepartment() {
+        return this.department;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
 
 }

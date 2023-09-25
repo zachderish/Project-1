@@ -22,4 +22,8 @@ public enum Department{
         this.fullName = fullName;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
 }

@@ -18,6 +18,8 @@ public class Event implements Comparable<Event> {
      * @param contact the Contact object associated with the Event
      * @param duration the Event duration
      */
+
+    // Lack of creating new objects within constructor may cause issues, will test
     public Event(Date date, Timeslot startTime, Location location, Contact contact, int duration) {
         this.date = date;
         this.startTime = startTime;
@@ -26,15 +28,34 @@ public class Event implements Comparable<Event> {
         this.duration = duration;
     }
 
-
+    // need way of adding duration to startTime (getter methods)
     @Override
     public String toString() {
-        return "";
+        String date = "[Event Date: " + this.date + "]";
+        String startTime = "[Start: " + this.startTime.getStartHour() + ":" + this.startTime.getStartMinute() + "pm]";
+        String endTime = "[End: " + (this.startTime) + "pm]"; // this part needs tweaking
+        String location = "@(" + this.location.getBuilding() + ", " + this.location.getCampus() + ")";
+        String contact = "[Contact: " + this.contact.getDepartment().getFullName() + ", " + this.contact.getEmail() + "]";
+        return date + startTime + endTime + location + contact;
     }
 
 
-    public boolean dateEquals(Date date) {
+    private boolean dateEquals(Date date) {
         if (this.date.compareTo(date) == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean timeEquals (Timeslot startTime, int duration) {
+        if (this.startTime == startTime && this.duration == duration) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean locationEquals (Location location) {
+        if (this.location == location) {
             return true;
         }
         return false;
@@ -44,7 +65,7 @@ public class Event implements Comparable<Event> {
     public boolean equals(Object obj) {
         if (obj instanceof Event) {
             Event event = (Event) obj;
-            return this.dateEquals(event.date);
+            return this.dateEquals(event.date) && this.timeEquals(event.startTime, event.duration) && this.locationEquals(event.location);
             // method only compares date attribute (others not yet implemented)
         }
         return false;
@@ -53,8 +74,21 @@ public class Event implements Comparable<Event> {
     @Override
     public int compareTo(Event event) {
         // method only compares date for now
-
-        return this.date.compareTo(event.date);
+        int dateCompareTo = this.date.compareTo(event.date);
+        if (dateCompareTo > 0) {
+            return 1;
+        }
+        if (dateCompareTo < 0) {
+            return -1;
+        }
+        int timeCompareTo = this.startTime.compareTo(event.startTime);
+        if (timeCompareTo > 0) {
+            return 1;
+        }
+        if (timeCompareTo < 0) {
+            return -1;
+        }
+        return 0;
     }
 
 }
