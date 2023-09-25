@@ -28,13 +28,35 @@ public class Event implements Comparable<Event> {
         this.duration = duration;
     }
 
+    private String getEndTime() {
+        int startHour = Integer.parseInt(this.startTime.getStartHour());
+        int startMinute = Integer.parseInt(this.startTime.getStartMinute());
+        String amOrPM = "pm";
+        if (this.startTime == Timeslot.MORNING) {
+            amOrPM = "am";
+        }
+        int minutesInHour = 60;
+        int hoursInAM = 12;
+        // Need to add conversions
+        if (amOrPM.equals("am")) {
+            int totalMinutes = (startHour * minutesInHour) + startMinute;
+            int scheduleMinutes = this.duration + totalMinutes;
+        }
+        else {
+            int totalMinutes = (startHour * minutesInHour) + (hoursInAM*minutesInHour) + startMinute;
+            int scheduleMinutes = this.duration + totalMinutes;
+        }
+
+        return "End Time WIP";
+    }
+
     // need way of adding duration to startTime (getter methods)
     @Override
     public String toString() {
         String date = "[Event Date: " + this.date + "]";
         String startTime = "[Start: " + this.startTime.getStartHour() + ":" + this.startTime.getStartMinute() + "pm]";
         String endTime = "[End: " + (this.startTime) + "pm]"; // this part needs tweaking
-        String location = "@(" + this.location.getBuilding() + ", " + this.location.getCampus() + ")";
+        String location = "@" + this.location + "(" + this.location.getBuilding() + ", " + this.location.getCampus() + ")";
         String contact = "[Contact: " + this.contact.getDepartment().getFullName() + ", " + this.contact.getEmail() + "]";
         return date + startTime + endTime + location + contact;
     }
@@ -88,7 +110,19 @@ public class Event implements Comparable<Event> {
         if (timeCompareTo < 0) {
             return -1;
         }
+        if (this.duration > event.duration) {
+            return 1;
+        }
+        if (this.duration < event.duration) {
+            return -1;
+        }
         return 0;
     }
 
+    public static void main(String[] args) {
+        Date date1 = new Date(2023, 12, 31);
+        Contact contact1 = new Contact(Department.CS, "cs@rutgers.edu");
+        Event event1 = new Event(date1, Timeslot.MORNING, Location.HLL114, contact1, 90);
+        System.out.println(event1.toString());
+    }
 }

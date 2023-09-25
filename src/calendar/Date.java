@@ -1,5 +1,7 @@
 package calendar;
 
+import java.util.Calendar;
+
 /**
  * Define the abstract data type Date and its methods
  * @author Kenrick Eagar, Zachary Derish
@@ -15,11 +17,18 @@ public class Date implements Comparable<Date>{
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
 
-    public static final int JANUARY = 1, FEBRUARY = 2, MARCH = 3;
-    public static final int APRIL = 4, MAY = 5, JUNE = 6, JULY = 7;
-    public static final int AUGUST = 8, SEPTEMBER = 9, OCTOBER = 10, NOVEMBER = 11, DECEMBER = 12;
+    public static final int JANUARY = 0, FEBRUARY = 1, MARCH = 2;
+    public static final int APRIL = 3, MAY = 4, JUNE = 5, JULY = 6;
+    public static final int AUGUST = 7, SEPTEMBER = 8, OCTOBER = 9, NOVEMBER = 10, DECEMBER = 11;
 
-    public static final int CURRENT_YEAR = 2023;
+
+    private final Calendar RIGHT_NOW = Calendar.getInstance();
+    private final int CURRENT_YEAR = RIGHT_NOW.get(Calendar.YEAR);
+    private final int CURRENT_MONTH = RIGHT_NOW.get(Calendar.MONTH)+1;
+    private final int CURRENT_DAY = RIGHT_NOW.get(Calendar.DAY_OF_MONTH);
+
+    private final int SIX_MONTHS = 6;
+    private final int ONE_DAY = 1;
 
     /**
      * Date constructor
@@ -68,52 +77,25 @@ public class Date implements Comparable<Date>{
     }
 
     /**
-     * Check that integer representation of month is between January and December
-     * @param month integer that represents month of the year
-     * @return true if month is >= 1 (January) or <= 12 (December), false otherwise
+     * Check the Date object to ensure it is being scheduled within 6 month timeframe
+     * @return true if date is within six months and not before current day, false otherwise
      */
-    public boolean validMonth(int month){
-        if(month < JANUARY || month > DECEMBER){ // if it's not between 1 and 12 not a valid month
-            return false;
-        }
-        return true;
-    }
+    public boolean isValid(){
+        int inputMonth = this.month;
+        int inputDay = this.day;
+        int inputYear = this.year;
 
-    /**
-     * Check if year is valid if scheduled year is >= current year
-     * @param year year represented as int
-     * @return false is year is before the current year, true otherwise
-     */
-    public boolean validYear(int year){
-        if(year < CURRENT_YEAR){
-            return false;
-        }
-        return true;
-    }
+        // create calendar object for the date to be scheduled
+        Calendar scheduleDate = Calendar.getInstance();
+        scheduleDate.set(inputYear, inputMonth, inputDay);
 
-    /**
-     * Check the Date object to ensure day, month and year attributes are in correct format
-     * @param inputDate the Date object to be checked for validity
-     * @return true if date fits proper format, false otherwise
-     */
-    public boolean isValid(Date inputDate){
-        int inputMonth = inputDate.month;
-        int inputDay = inputDate.day;
-        int inputYear = inputDate.year;
+        // create Calendar object for the first day that cannot be scheduled
+        Calendar scheduleLimit = Calendar.getInstance();
+        scheduleLimit.add(Calendar.MONTH, SIX_MONTHS);
+        scheduleLimit.add(Calendar.DAY_OF_MONTH, ONE_DAY);
 
-        if(!validMonth(inputMonth)){
-            return false;
-        }
+        return scheduleDate.before(scheduleLimit) && scheduleDate.after(RIGHT_NOW);
 
-        if(!validYear(inputYear)){
-            return false;
-        }
-
-        if(inputDay <= 0 || inputDay > numberOfDays(inputMonth, inputYear)) { //if data is below or over the number of days its invalid
-            return false;
-        }
-
-        return true;
     }
 
     /**
@@ -142,17 +124,19 @@ public class Date implements Comparable<Date>{
     }
 
     public static void main(String[] args) {
-        Date date1 = new Date(2023, 9, 18);
-        Date date2 = new Date(2024, 9, 18);
-        boolean validCheck = date1.isValid(date1);
+        Date date1 = new Date(2023, 7, 18);
+        Date date2 = new Date(2024, 1, 12);
+        boolean validCheck = date1.isValid();
         System.out.println(validCheck);
-        boolean validCheck2 = date1.isValid(date1);
+        boolean validCheck2 = date2.isValid();
         System.out.println(validCheck2);
 
-        System.out.println(date1.compareTo(date2));
-        System.out.println(date2.compareTo(date1));
-        Date date3 = new Date(2023, 9, 18);
-        System.out.println(date1.compareTo(date3));
+        //System.out.println(date1.compareTo(date2));
+        //System.out.println(date2.compareTo(date1));
+        Date date3 = new Date(2024, 10, 18);
+        //System.out.println(date1.compareTo(date3));
+        System.out.println(date3.isValid());
+
 
     }
 

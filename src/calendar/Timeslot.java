@@ -1,8 +1,5 @@
 package calendar;
 
-
-import java.sql.Time;
-
 /**
  * Define the enum class Timeslot
  * @author Kenrick Eagar, Zachary Derish
