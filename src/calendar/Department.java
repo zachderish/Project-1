@@ -26,4 +26,10 @@ public enum Department{
         return fullName;
     }
 
+    public static void main(String[] args) {
+        for (Department department : Department.values()) {
+            System.out.println(department + ": " + department.getFullName());
+        }
+    }
+
 }

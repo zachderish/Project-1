@@ -33,4 +33,10 @@ public enum Location{
     public String getCampus() {
         return this.campus;
     }
+
+    public static void main(String[] args) {
+        for (Location location : Location.values()) {
+            System.out.println(location + ": " + location.getBuilding() + ", " + location.getCampus());
+        }
+    }
 }

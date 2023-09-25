@@ -1,6 +1,8 @@
 package calendar;
 
 
+import java.sql.Time;
+
 /**
  * Define the enum class Timeslot
  * @author Kenrick Eagar, Zachary Derish
@@ -32,4 +34,10 @@ public enum Timeslot{
     public String getStartMinute() {
         return this.startMinute;
     }
+
+    public static void main(String[] args) {
+        for (Timeslot timeslot : Timeslot.values()) {
+            System.out.println(timeslot + ": " + timeslot.getStartHour() + ":" + timeslot.getStartMinute());
+        }
     }
+}
