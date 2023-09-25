@@ -16,6 +16,8 @@ public enum Timeslot{
 
     /**
      * Timeslot constructor
+     * @param startHour the start time hour associated with the Timeslot
+     * @param startMinute the start time minute associated with the Timeslot
      */
     Timeslot (int startHour, int startMinute) {
             this.startHour = startHour;

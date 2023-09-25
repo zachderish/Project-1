@@ -10,9 +10,13 @@ public class Event implements Comparable<Event> {
     private Contact contact; //include the department name and email
     private int duration; //in minutes
 
-
     /**
-     * Event object constructor
+     * Event constructor
+     * @param date the Date object associated with the Event
+     * @param startTime the Timeslot object associated with the Event
+     * @param location the Location object associated with the Event
+     * @param contact the Contact object associated with the Event
+     * @param duration the Event duration
      */
     public Event(Date date, Timeslot startTime, Location location, Contact contact, int duration) {
         this.date = date;

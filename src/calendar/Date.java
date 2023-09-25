@@ -21,7 +21,12 @@ public class Date implements Comparable<Date>{
 
     public static final int CURRENT_YEAR = 2023;
 
-    //calendar.Date Object Constructor
+    /**
+     * Date constructor
+     * @param year the year associated with the Date
+     * @param month the month associated with the Date
+     * @param day the day associated with the Date
+     */
     public Date(int year, int month, int day){
         this.year = year;
         this.month = month;
