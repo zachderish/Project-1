@@ -170,9 +170,9 @@ public class Event implements Comparable<Event> {
     }
 
     public static void main(String[] args) {
-        Date date1 = new Date(2023, 12, 31);
+        /*Date date1 = new Date(2023, 12, 31);
         Contact contact1 = new Contact(Department.CS, "cs@rutgers.edu");
         Event event1 = new Event(date1, Timeslot.EVENING, Location.HLL114, contact1, 90);
-        System.out.println(event1.toString());
+        System.out.println(event1.toString());*/
     }
 }
