@@ -28,34 +28,84 @@ public class Event implements Comparable<Event> {
         this.duration = duration;
     }
 
-    private String getEndTime() {
-        int startHour = Integer.parseInt(this.startTime.getStartHour());
-        int startMinute = Integer.parseInt(this.startTime.getStartMinute());
+    private String getEndAM(int minutesInHour, int hoursInAM, int startHour, int startMinute, String amOrPM) {
+        int totalMinutes = (startHour * minutesInHour) + startMinute;
+        int scheduleMinutes = this.duration + totalMinutes;
+        String finalEndTime = "";
+
+        if (scheduleMinutes > (hoursInAM * minutesInHour)) {
+            amOrPM = "pm";
+            scheduleMinutes = scheduleMinutes - (hoursInAM * minutesInHour);
+        }
+
+        if (scheduleMinutes == (hoursInAM * minutesInHour)) {
+            amOrPM = "pm";
+            return "12:00pm";
+        }
+
+        int scheduleHour = (int) Math.floor(scheduleMinutes / minutesInHour);
+        int scheduleMin = scheduleMinutes - (scheduleHour * minutesInHour);
+
+        String finalMin = Integer.toString(scheduleMin);
+        if (scheduleMin == 0) {
+            finalMin = Integer.toString(scheduleMin) + "0";
+        }
+
+        finalEndTime = scheduleHour + ":" + finalMin + amOrPM;
+
+        return finalEndTime;
+    }
+
+    private String getEndPM(int minutesInHour, int startHour, int startMinute) {
+        int totalMinutes = (startHour * minutesInHour) + startMinute;
+        int scheduleTotalMinutes = this.duration + totalMinutes;
+
+        int scheduleHour = (int) Math.floor(scheduleTotalMinutes / minutesInHour);
+        int scheduleMin = scheduleTotalMinutes - (scheduleHour * minutesInHour);
+        String finalMin = Integer.toString(scheduleMin);
+        if (scheduleMin == 0) {
+            finalMin = Integer.toString(scheduleMin) + "0";
+        }
+
+        String finalEndTime = scheduleHour + ":" + finalMin + "pm";
+
+        return finalEndTime;
+    }
+
+    private String getEndTime(Event event) {
+        int startHour = Integer.parseInt(event.startTime.getStartHour());
+        int startMinute = Integer.parseInt(event.startTime.getStartMinute());
         String amOrPM = "pm";
-        if (this.startTime == Timeslot.MORNING) {
+        if (event.startTime == Timeslot.MORNING) {
             amOrPM = "am";
         }
         int minutesInHour = 60;
         int hoursInAM = 12;
+        String finalEndTime = "";
         // Need to add conversions
-        if (amOrPM.equals("am")) {
-            int totalMinutes = (startHour * minutesInHour) + startMinute;
-            int scheduleMinutes = this.duration + totalMinutes;
+        if (amOrPM == "am") {
+            finalEndTime = getEndAM(minutesInHour, hoursInAM, startHour, startMinute, amOrPM);
         }
         else {
-            int totalMinutes = (startHour * minutesInHour) + (hoursInAM*minutesInHour) + startMinute;
-            int scheduleMinutes = this.duration + totalMinutes;
+            finalEndTime = getEndPM(minutesInHour, startHour, startMinute);
         }
 
-        return "End Time WIP";
+        return "[End: " + finalEndTime + "]";
+    }
+
+    private String getStartTime(Event event) {
+        if (event.startTime == Timeslot.MORNING) {
+            return "[Start: " + event.startTime.getStartHour() + ":" + event.startTime.getStartMinute() + "am]";
+        }
+        return "[Start: " + event.startTime.getStartHour() + ":" + event.startTime.getStartMinute() + "pm]";
     }
 
     // need way of adding duration to startTime (getter methods)
     @Override
     public String toString() {
-        String date = "[Event Date: " + this.date + "]";
-        String startTime = "[Start: " + this.startTime.getStartHour() + ":" + this.startTime.getStartMinute() + "pm]";
-        String endTime = "[End: " + (this.startTime) + "pm]"; // this part needs tweaking
+        String date = "[Event Date: " + this.date.getDate() + "]";
+        String startTime = getStartTime(this);
+        String endTime = getEndTime(this); // this part needs tweaking
         String location = "@" + this.location + "(" + this.location.getBuilding() + ", " + this.location.getCampus() + ")";
         String contact = "[Contact: " + this.contact.getDepartment().getFullName() + ", " + this.contact.getEmail() + "]";
         return date + startTime + endTime + location + contact;
@@ -122,7 +172,7 @@ public class Event implements Comparable<Event> {
     public static void main(String[] args) {
         Date date1 = new Date(2023, 12, 31);
         Contact contact1 = new Contact(Department.CS, "cs@rutgers.edu");
-        Event event1 = new Event(date1, Timeslot.MORNING, Location.HLL114, contact1, 90);
+        Event event1 = new Event(date1, Timeslot.EVENING, Location.HLL114, contact1, 90);
         System.out.println(event1.toString());
     }
 }

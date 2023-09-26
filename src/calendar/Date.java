@@ -123,6 +123,11 @@ public class Date implements Comparable<Date>{
         return 0;
     }
 
+    public String getDate() {
+        String finalDate = this.month + "/" + this.day + "/" + this.year;
+        return finalDate;
+    }
+
     public static void main(String[] args) {
         Date date1 = new Date(2023, 7, 18);
         Date date2 = new Date(2024, 1, 12);
