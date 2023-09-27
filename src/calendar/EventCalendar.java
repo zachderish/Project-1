@@ -189,14 +189,13 @@ public class EventCalendar {
         System.out.println("* end of event calendar *");
     } //ordered by department
 
-
     public static void main(String[] args) {
         Date date1 = new Date(2024, 2, 14);
         Contact contact1 = new Contact(Department.CS, "cs@rutgers.edu");
         Event event1 = new Event(date1, Timeslot.EVENING, Location.HLL114, contact1, 90);
         Event[] events1 = {};
 
-        EventCalendar eventCalendar = new EventCalendar(events1, 1);
+        EventCalendar eventCalendar = new EventCalendar(events1, 0);
         eventCalendar.add(event1);
         System.out.println("Testing initialization...");
         eventCalendar.print();
