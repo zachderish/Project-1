@@ -169,6 +169,10 @@ public class Event implements Comparable<Event> {
         return 0;
     }
 
+    public Location getLocation() {
+        return this.location;
+    }
+
     public static void main(String[] args) {
         /*Date date1 = new Date(2023, 12, 31);
         Contact contact1 = new Contact(Department.CS, "cs@rutgers.edu");
