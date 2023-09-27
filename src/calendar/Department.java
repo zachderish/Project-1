@@ -6,11 +6,11 @@ package calendar;
  */
 public enum Department{
 
+    BAIT ("Business Analytics and Information Technology"),
     CS ("Computer Science"),
     EE ("Electrical Engineering"),
-    MATH ("Information Technology Informatics"),
     ITI ("Mathematics"),
-    BAIT ("Business Analytics and Information Technology");
+    MATH ("Information Technology Informatics");
 
     private final String fullName;
 

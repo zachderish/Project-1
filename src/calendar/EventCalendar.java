@@ -165,9 +165,30 @@ public class EventCalendar {
 
     } //ordered by campus and building/room
 
-    /*public void printByDepartment() {
+    public void printByDepartment() {
+        System.out.println("* Event calendar by department *");
+        if(this.numEvents > 1) { // Insertion sort from: https://www.geeksforgeeks.org/insertion-sort/
+            for (int i = 1; i < this.numEvents; ++i) {
+
+                Event event = this.events[i];
+                int j = i - 1;
+
+                Contact contact1 = event.getContact();
+                Contact contact2 = this.events[j].getContact();
+
+                while (j >= 0 && contact2.getDepartment().compareTo(contact1.getDepartment()) > 0) {
+                    this.events[j+1] = this.events[j];
+                    j = j - 1;
+                }
+                this.events[j + 1] = event;
+            }
+        }
+        for (int i = 0; i < this.numEvents; i++) {
+            System.out.println(this.events[i].toString());
+        }
+        System.out.println("* end of event calendar *");
     } //ordered by department
-    */
+
 
     public static void main(String[] args) {
         Date date1 = new Date(2024, 2, 14);
@@ -199,6 +220,7 @@ public class EventCalendar {
         eventCalendar.print();
         eventCalendar.printByDate();
         eventCalendar.printByCampus();
+        eventCalendar.printByDepartment();
 
         System.out.println("\nTesting remove...");
         eventCalendar.remove(event3);
