@@ -120,7 +120,7 @@ public class EventCalendar {
 
     private boolean greaterThan(Location location1, Location location2) {
         //System.out.println("location1: " + location1.getCampus() + " location2: " + location2.getCampus() + " result: " + location1.getCampus().compareTo(location2.getCampus()));
-        if (location1.getCampus().compareTo(location2.getCampus()) > 0) {
+        /*if (location1.getCampus().compareTo(location2.getCampus()) > 0) {
             return true;
         }
         else if (location1.getCampus().compareTo(location2.getCampus()) < 0) {
@@ -134,7 +134,8 @@ public class EventCalendar {
         }
         else {
             return false;
-        }
+        }*/
+        return location1.compareTo(location2) > 0;
     }
 
     public void printByCampus() {
@@ -145,12 +146,7 @@ public class EventCalendar {
                 Event event = this.events[i];
                 int j = i - 1;
 
-                Location location1 = this.events[j].getLocation();
-                Location location2 = event.getLocation();
-
-                //System.out.println(location1.getCampus() + ", " + location1.getBuilding() + "; " + location2.getCampus() + ", " + location2.getBuilding() + "; " + greaterThan(location1, location2));
-                while (j >= 0 && greaterThan(location1, location2)) {
-                    //System.out.println(location1.getCampus() + ", " + location1.getBuilding() + "; " + location2.getCampus() + ", " + location2.getBuilding() + "; " + greaterThan(location1, location2));
+                while (j >= 0 && greaterThan(this.events[j].getLocation(), event.getLocation())) {
                     this.events[j+1] = this.events[j];
                     j = j - 1;
                 }
@@ -172,10 +168,7 @@ public class EventCalendar {
                 Event event = this.events[i];
                 int j = i - 1;
 
-                Contact contact1 = event.getContact();
-                Contact contact2 = this.events[j].getContact();
-
-                while (j >= 0 && contact2.getDepartment().compareTo(contact1.getDepartment()) > 0) {
+                while (j >= 0 && event.getContact().getDepartment().compareTo(this.events[j].getContact().getDepartment()) > 0) {
                     this.events[j+1] = this.events[j];
                     j = j - 1;
                 }
