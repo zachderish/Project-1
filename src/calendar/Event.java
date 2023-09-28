@@ -177,6 +177,14 @@ public class Event implements Comparable<Event> {
         return this.contact;
     }
 
+    public Date getDate() {
+        return this.date;
+    }
+
+    public Timeslot getTimeslot() {
+        return this.startTime;
+    }
+
     public static void main(String[] args) {
         /*Date date1 = new Date(2023, 12, 31);
         Contact contact1 = new Contact(Department.CS, "cs@rutgers.edu");

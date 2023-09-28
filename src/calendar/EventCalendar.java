@@ -15,7 +15,7 @@ public class EventCalendar {
     }
 
     private int find(Event event) {//find the index of the event;
-        int n = this.events.length;
+        int n = this.numEvents;
         for (int i = 0; i < n; i++) {
             if (this.events[i].equals(event)) {
                 return i; //return the index of where the event is
@@ -80,7 +80,7 @@ public class EventCalendar {
     }
 
     public boolean contains(Event event) {
-        int didWeFindIt = find(event);
+        int didWeFindIt = this.find(event);
         if (didWeFindIt == NOT_FOUND) { //if we cant find it in the list then list does not contain it
             return false;
         }

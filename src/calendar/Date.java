@@ -38,7 +38,7 @@ public class Date implements Comparable<Date>{
      */
     public Date(int year, int month, int day){
         this.year = year;
-        this.month = month;
+        this.month = month-1;
         this.day = day;
     }
 
@@ -48,7 +48,7 @@ public class Date implements Comparable<Date>{
      * @return true if leap year, false otherwise
      */
     private boolean isLeapYear(int year) {
-        if (year % QUADRENNIAL == 0 && year % CENTENNIAL == 0 && year % QUATERCENTENNIAL == 0) {
+        if (year % QUADRENNIAL == 0 || year % QUATERCENTENNIAL == 0) {
             return true;
         }
         return false;
@@ -85,17 +85,31 @@ public class Date implements Comparable<Date>{
         int inputDay = this.day;
         int inputYear = this.year;
 
+        boolean validDay = inputDay <= numberOfDays(inputMonth, inputYear) && inputDay >= 1;
+        boolean validMonth = inputMonth <= 11 && inputMonth >= 0;
+        boolean validDay_Month = validDay && validMonth;
+
+        return validDay_Month;
+
+    }
+
+    public String within6Months() {
         // create calendar object for the date to be scheduled
         Calendar scheduleDate = Calendar.getInstance();
-        scheduleDate.set(inputYear, inputMonth, inputDay);
+        scheduleDate.set(this.year, this.month, this.day);
 
         // create Calendar object for the first day that cannot be scheduled
         Calendar scheduleLimit = Calendar.getInstance();
         scheduleLimit.add(Calendar.MONTH, SIX_MONTHS);
         scheduleLimit.add(Calendar.DAY_OF_MONTH, ONE_DAY);
 
-        return scheduleDate.before(scheduleLimit) && scheduleDate.after(RIGHT_NOW);
-
+        if(!scheduleDate.before(scheduleLimit)) {
+            return "Event date must be within 6 months!";
+        }
+        if(!scheduleDate.after(RIGHT_NOW)) {
+            return "Event date must be a future date!";
+        }
+        return "VALID";
     }
 
     /**

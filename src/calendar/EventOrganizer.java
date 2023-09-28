@@ -35,16 +35,108 @@ public class EventOrganizer {
         if (input[2].equalsIgnoreCase("evening")){
             return Timeslot.EVENING;
         }
-        return Timeslot.MORNING;
+        if (input[2].equalsIgnoreCase("morning")) {
+            return Timeslot.MORNING;
+        }
+        return null;
+    }
+
+    private Location makeLocation(String[] input) {
+        if (input[3].equalsIgnoreCase("hll114")) {
+            return Location.HLL114;
+        }
+        if (input[3].equalsIgnoreCase("arc103")) {
+            return Location.ARC103;
+        }
+        if (input[3].equalsIgnoreCase("be_aud")) {
+            return Location.BE_AUD;
+        }
+        if (input[3].equalsIgnoreCase("til232")) {
+            return Location.TIL232;
+        }
+        if(input[3].equalsIgnoreCase("ab2225")) {
+            return Location.AB2225;
+        }
+        if(input[3].equalsIgnoreCase("mu302")) {
+            return Location.MU302;
+        }
+        return null;
+    }
+
+    private Contact makeContact(String[] input) {
+        Department department = null;
+
+        if (input[4].equalsIgnoreCase("bait")) {
+            department = Department.BAIT;
+        }
+        if (input[4].equalsIgnoreCase("cs")) {
+            department = Department.CS;
+        }
+        if (input[4].equalsIgnoreCase("ee")) {
+            department = Department.EE;
+        }
+        if (input[4].equalsIgnoreCase("iti")) {
+            department = Department.ITI;
+        }
+        if (input[4].equalsIgnoreCase("math")) {
+            department = Department.MATH;
+        }
+
+        return new Contact(department, input[5]);
+    }
+
+    private String validDate(Event event, String[] input) {
+        Date date = event.getDate();
+        if (!date.isValid()) {
+            return input[1] + ": Invalid calendar date!";
+        }
+        if (!date.within6Months().equals("VALID")) {
+            return input[1] + ": " + date.within6Months();
+        }
+        return "VALID";
+    }
+
+
+    private String validAdd(Event event, String[] input, EventCalendar calendar) {
+        if (calendar.contains(event)) {
+            return "The event is already on the calendar.";
+        }
+        if (!validDate(event, input).equals("VALID")) {
+            return validDate(event, input);
+        }
+        if (event.getTimeslot() == null) {
+            return "Invalid time slot!";
+        }
+        if (event.getLocation() == null) {
+            return "Invalid location!";
+        }
+        if (!event.getContact().isValid()) {
+            return "Invalid contact information!";
+        }
+        int duration = Integer.parseInt(input[6]);
+        if (duration > 120 || duration < 30) {
+            return "Event duration must be at least 30 minutes and at most 120 minutes";
+        }
+        return "VALID";
+
     }
 
     private String runAdd(EventCalendar calendar, String[] input) {
         Date date = makeDate(input);
         Timeslot timeslot = makeTimeslot(input);
+        Location location = makeLocation(input);
+        Contact contact = makeContact(input);
+        int duration = Integer.parseInt(input[6]);
 
         // Making objects for event object in their own methods
-        Event newEvent = new Event(date, timeslot, );
-        return "";
+        Event newEvent = new Event(date, timeslot, location, contact, duration);
+
+        // Check for reason not to add
+        if (validAdd(newEvent, input, calendar).equals("VALID")) {
+            calendar.add(newEvent);
+            return "Event added to the calendar.";
+        }
+        return validAdd(newEvent, input, calendar);
     }
 
     private String runCommand(String[] input, EventCalendar calendar) {
