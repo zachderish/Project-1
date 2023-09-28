@@ -142,12 +142,24 @@ public class EventOrganizer {
     private String runCommand(String[] input, EventCalendar calendar) {
         String returnMessage = "";
 
-        if (input[0].equals("Q")) {
+        String command = input[0];
+        if (command.equals("Q")) {
             return "QUIT";
         }
-        if (input[0].equals("A")) {
+        if (command.equals("A")) {
             returnMessage = runAdd(calendar, input);
-
+        }
+        if (command.equals("P")) {
+            calendar.print();
+        }
+        if (command.equals("PD")) {
+            calendar.printByDepartment();
+        }
+        if (command.equals("PC")) {
+            calendar.printByCampus();
+        }
+        if (command.equals("PE")) {
+            calendar.printByDate();
         }
         return returnMessage;
     }

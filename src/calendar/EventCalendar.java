@@ -119,25 +119,22 @@ public class EventCalendar {
     } //ordered by date and timeslot
 
     private boolean greaterThan(Location location1, Location location2) {
+        //System.out.println("location1: " + location1.getCampus() + " location2: " + location2.getCampus() + " result: " + location1.getCampus().compareTo(location2.getCampus()));
         if (location1.getCampus().compareTo(location2.getCampus()) > 0) {
             return true;
         }
-        if (location1.getCampus().compareTo(location2.getCampus()) < 0) {
+        else if (location1.getCampus().compareTo(location2.getCampus()) < 0) {
             return false;
         }
-        if (location1.getBuilding().compareTo(location2.getBuilding()) > 0) {
+        else if (location1.getBuilding().compareTo(location2.getBuilding()) > 0) {
             return true;
         }
-        if (location1.getBuilding().compareTo(location2.getBuilding()) < 0) {
+        else if (location1.getBuilding().compareTo(location2.getBuilding()) < 0) {
             return false;
         }
-        if (location1.compareTo(location2) > 0) {
-            return true;
-        }
-        if (location1.compareTo(location2) < 0) {
+        else {
             return false;
         }
-        return false;
     }
 
     public void printByCampus() {
@@ -151,7 +148,9 @@ public class EventCalendar {
                 Location location1 = this.events[j].getLocation();
                 Location location2 = event.getLocation();
 
+                //System.out.println(location1.getCampus() + ", " + location1.getBuilding() + "; " + location2.getCampus() + ", " + location2.getBuilding() + "; " + greaterThan(location1, location2));
                 while (j >= 0 && greaterThan(location1, location2)) {
+                    //System.out.println(location1.getCampus() + ", " + location1.getBuilding() + "; " + location2.getCampus() + ", " + location2.getBuilding() + "; " + greaterThan(location1, location2));
                     this.events[j+1] = this.events[j];
                     j = j - 1;
                 }

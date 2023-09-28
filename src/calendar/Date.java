@@ -138,7 +138,7 @@ public class Date implements Comparable<Date>{
     }
 
     public String getDate() {
-        String finalDate = this.month + "/" + this.day + "/" + this.year;
+        String finalDate = (this.month+1) + "/" + this.day + "/" + this.year;
         return finalDate;
     }
 
