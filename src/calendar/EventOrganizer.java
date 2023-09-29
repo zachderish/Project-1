@@ -156,7 +156,7 @@ public class EventOrganizer {
         Timeslot timeslot = makeTimeslot(input);
         Contact contact = makeContact(input);
         int duration = Integer.parseInt(input[6]);
-        Event tempEvent = new Event(tempDate, timeslot, location, contact, duration);
+        Event tempEvent = new Event(date, timeslot, location, contact, duration);
         if(!calendar.remove(tempEvent)){
             return "Cannot remove; event is not in the calendar!";
         }
