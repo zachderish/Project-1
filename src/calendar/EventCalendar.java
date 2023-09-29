@@ -200,6 +200,10 @@ public class EventCalendar {
         System.out.println("* end of event calendar *");
     } //ordered by department
 
+    public int getNumEvents() {
+        return this.numEvents;
+    }
+
     public static void main(String[] args) {
         Date date1 = new Date(2024, 2, 14);
         Contact contact1 = new Contact(Department.CS, "cs@rutgers.edu");

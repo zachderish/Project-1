@@ -173,21 +173,26 @@ public class EventOrganizer {
         if (command.equals("A")) {
             returnMessage = runAdd(calendar, input);
         }
-        if (command.equals("P")) {
-            calendar.print();
+        if (calendar.getNumEvents() == 0 ){
+            returnMessage = "Event calendar is empty!";
         }
-        if (command.equals("PD")) {
-            calendar.printByDepartment();
-        }
-        if (command.equals("PC")) {
-            calendar.printByCampus();
-        }
-        if (command.equals("PE")) {
-            calendar.printByDate();
-        }
+        else {
+            if (command.equals("P")) {
+                calendar.print();
+            }
+            if (command.equals("PD")) {
+                calendar.printByDepartment();
+            }
+            if (command.equals("PC")) {
+                calendar.printByCampus();
+            }
+            if (command.equals("PE")) {
+                calendar.printByDate();
+            }
 
-        if(command.equals("R")){
-            returnMessage = removeEvent(calendar, input);
+            if (command.equals("R")) {
+                returnMessage = removeEvent(calendar, input);
+            }
         }
         return returnMessage;
     }
@@ -207,9 +212,13 @@ public class EventOrganizer {
             if (validCommand(lineItemized[0])) {
                 String message = runCommand(lineItemized, calendar);
                 if (message.equals("QUIT")) {
+                    System.out.println("Event Organizer terminated.");
                     return;
                 }
                 System.out.println(message);
+            }
+            else if (lineItemized[0].isEmpty()) {
+                System.out.print("");
             }
             else {
                 System.out.println(line + " is an invalid command!");

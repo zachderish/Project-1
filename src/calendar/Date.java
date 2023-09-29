@@ -142,21 +142,35 @@ public class Date implements Comparable<Date>{
         return finalDate;
     }
 
+    /**
+     * Testbed main for isValid()
+     * @param args
+     */
     public static void main(String[] args) {
-        Date date1 = new Date(2023, 7, 18);
-        Date date2 = new Date(2024, 1, 12);
-        boolean validCheck = date1.isValid();
-        System.out.println(validCheck);
-        boolean validCheck2 = date2.isValid();
-        System.out.println(validCheck2);
+        String test1 = isValidDate();
+        System.out.println(test1);
 
-        //System.out.println(date1.compareTo(date2));
-        //System.out.println(date2.compareTo(date1));
-        Date date3 = new Date(2024, 10, 18);
-        //System.out.println(date1.compareTo(date3));
-        System.out.println(date3.isValid());
+        String test2 = isWrongMonth();
+        System.out.println(test2);
 
+        String test3 = isWrongDay_NotLeapYear();
+        System.out.println(test3);
 
+    }
+
+    private static String isValidDate() {
+        Date date1 = new Date(2024, 2, 29);
+        return "* Running isValidDate() *\n" + date1.getDate()  + "\nisValid() result: " + date1.isValid();
+    }
+
+    private static String isWrongMonth() {
+        Date date1 = new Date(2023, 13, 18);
+        return "* Running isWrongMonth() *\n" + date1.getDate()  + "\nisValid() result: " + date1.isValid();
+    }
+
+    private static String isWrongDay_NotLeapYear() {
+        Date date1 = new Date(2023, 2, 29);
+        return "* Running isWrongDay_NotLeapYear() *\n" + date1.getDate()  + "\nisValid() result: " + date1.isValid();
     }
 
 

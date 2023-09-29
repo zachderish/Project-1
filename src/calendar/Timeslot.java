@@ -7,7 +7,7 @@ package calendar;
 public enum Timeslot{
         MORNING ("10", "30"),
         AFTERNOON ("2", "00"),
-        EVENING ("3", "30");
+        EVENING ("6", "30");
 
         private final String startHour;
         private final String startMinute;

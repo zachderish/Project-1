@@ -49,7 +49,7 @@ public class Event implements Comparable<Event> {
      */
     private String getEndAM(int minutesInHour, int hoursInAM, int startHour, int startMinute, String amOrPM) {
         int totalMinutes = (startHour * minutesInHour) + startMinute;
-        int scheduleMinutes = this.duration + totalMinutes;
+        float scheduleMinutes = this.duration + totalMinutes;
         String finalEndTime = "";
 
         if (scheduleMinutes > (hoursInAM * minutesInHour)) {
@@ -63,11 +63,20 @@ public class Event implements Comparable<Event> {
         }
 
         int scheduleHour = (int) Math.floor(scheduleMinutes / minutesInHour);
-        int scheduleMin = scheduleMinutes - (scheduleHour * minutesInHour);
+        if (scheduleHour == 0) {
+            scheduleHour = 12;
+        }
+        int scheduleMin = 0;
+        if (amOrPM.equals("am")){
+            scheduleMin = (int) scheduleMinutes - (scheduleHour * minutesInHour);
+        }
+        else {
+            scheduleMin = (int) scheduleMinutes;
+        }
 
         String finalMin = Integer.toString(scheduleMin);
-        if (scheduleMin == 0) {
-            finalMin = Integer.toString(scheduleMin) + "0";
+        if (scheduleMin < 10) {
+            finalMin = "0" + scheduleMin;
         }
 
         finalEndTime = scheduleHour + ":" + finalMin + amOrPM;
@@ -82,14 +91,17 @@ public class Event implements Comparable<Event> {
      * @return the end time for a PM Event as a String.
      */
     private String getEndPM(int minutesInHour, int startHour, int startMinute) {
-        int totalMinutes = (startHour * minutesInHour) + startMinute;
-        int scheduleTotalMinutes = this.duration + totalMinutes;
+        float totalMinutes = (startHour * minutesInHour) + startMinute;
+        float scheduleTotalMinutes = this.duration + totalMinutes;
 
         int scheduleHour = (int) Math.floor(scheduleTotalMinutes / minutesInHour);
-        int scheduleMin = scheduleTotalMinutes - (scheduleHour * minutesInHour);
+        if (scheduleHour == 0) {
+            scheduleHour = 12;
+        }
+        int scheduleMin = (int) scheduleTotalMinutes - (scheduleHour * minutesInHour);
         String finalMin = Integer.toString(scheduleMin);
-        if (scheduleMin == 0) {
-            finalMin = Integer.toString(scheduleMin) + "0";
+        if (scheduleMin < 10) {
+            finalMin = "0" + scheduleMin;
         }
 
         String finalEndTime = scheduleHour + ":" + finalMin + "pm";
@@ -112,7 +124,7 @@ public class Event implements Comparable<Event> {
         int hoursInAM = 12;
         String finalEndTime = "";
         // Need to add conversions
-        if (amOrPM == "am") {
+        if (amOrPM.equals("am")) {
             finalEndTime = getEndAM(minutesInHour, hoursInAM, startHour, startMinute, amOrPM);
         }
         else {
