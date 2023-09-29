@@ -19,7 +19,7 @@ public class EventCalendar {
         Location location = event.getLocation();
         int n = this.numEvents;
         for(int i =0; i<n; i++){
-            if(this.events[i].dateEquals(date) && this.events[i].locationEquals(location){
+            if(this.events[i].dateEquals(date) && this.events[i].locationEquals(location)){
                 return i;
             }
         }
