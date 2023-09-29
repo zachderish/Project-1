@@ -144,13 +144,13 @@ public class EventOrganizer {
         Location location = makeLocation(input);
         if(input.length < 7) { //if its less than 7 we dont have all details for event
             Event tempEvent = new Event(date, location);
-            if (!validDate(tempEvent, input).equals("VALID")) { //for incomplete events we check the date and ensure its valid
-                return validDate(!validDate(tempEvent, input));
+            if (validDate(tempEvent, input).equals("VALID") == false) { //for incomplete events we check the date and ensure its valid
+                return validDate(tempEvent, input);
             }
             if(!calendar.remove(tempEvent)){
                 return "Cannot remove; event is not in the calendar!";
             } else {
-                return "Event has been removed from the calendar!"
+                return "Event has been removed from the calendar!";
             }
         }
         Timeslot timeslot = makeTimeslot(input);
@@ -160,7 +160,7 @@ public class EventOrganizer {
         if(!calendar.remove(tempEvent)){
             return "Cannot remove; event is not in the calendar!";
         }
-        return "Event has been removed from the calendar!"
+        return "Event has been removed from the calendar!";
     }
 
     private String runCommand(String[] input, EventCalendar calendar) {
@@ -187,7 +187,7 @@ public class EventOrganizer {
         }
 
         if(command.equals("R")){
-
+            returnMessage = removeEvent(calendar, input);
         }
         return returnMessage;
     }
