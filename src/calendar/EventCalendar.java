@@ -14,12 +14,30 @@ public class EventCalendar {
         this.numEvents = initialSize;
     }
 
+    private int findByElements(Event event){
+        Date date = event.getDate();
+        Location location = event.getLocation();
+        int n = this.numEvents;
+        for(int i =0; i<n; i++){
+            if(this.events[i].dateEquals(date) && this.events[i].locationEquals(location){
+                return i;
+            }
+        }
+
+        return NOT_FOUND;
+
+    }
     private int find(Event event) {//find the index of the event;
         int n = this.numEvents;
         for (int i = 0; i < n; i++) {
             if (this.events[i].equals(event)) {
                 return i; //return the index of where the event is
             }
+        }
+        int compareFindSearch = findByElements(event);
+
+        if(compareFindSearch != NOT_FOUND){
+            return compareFindSearch;
         }
         return NOT_FOUND; //did not find list
     }
@@ -86,6 +104,7 @@ public class EventCalendar {
         }
         return true;
     }
+
 
     public void print() {
         System.out.println("* Event calendar *");

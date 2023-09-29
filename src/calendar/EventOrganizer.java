@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class EventOrganizer {
 
     final String[] COMMANDS = {"A", "R", "P", "PE", "PC", "PD", "Q"};
-
+    public static final int NOT_FOUND = -1;
     final Boolean INITIALIZED = false;
 
     private boolean validCommand(String input) {
@@ -139,6 +139,30 @@ public class EventOrganizer {
         return validAdd(newEvent, input, calendar);
     }
 
+    private String removeEvent(EventCalendar calendar, String[] input){
+        Date date = makeDate(input);
+        Location location = makeLocation(input);
+        if(input.length < 7) { //if its less than 7 we dont have all details for event
+            Event tempEvent = new Event(date, location);
+            if (!validDate(tempEvent, input).equals("VALID")) { //for incomplete events we check the date and ensure its valid
+                return validDate(!validDate(tempEvent, input));
+            }
+            if(!calendar.remove(tempEvent)){
+                return "Cannot remove; event is not in the calendar!";
+            } else {
+                return "Event has been removed from the calendar!"
+            }
+        }
+        Timeslot timeslot = makeTimeslot(input);
+        Contact contact = makeContact(input);
+        int duration = Integer.parseInt(input[6]);
+        Event tempEvent = new Event(tempDate, timeslot, location, contact, duration);
+        if(!calendar.remove(tempEvent)){
+            return "Cannot remove; event is not in the calendar!";
+        }
+        return "Event has been removed from the calendar!"
+    }
+
     private String runCommand(String[] input, EventCalendar calendar) {
         String returnMessage = "";
 
@@ -160,6 +184,10 @@ public class EventOrganizer {
         }
         if (command.equals("PE")) {
             calendar.printByDate();
+        }
+
+        if(command.equals("R")){
+
         }
         return returnMessage;
     }

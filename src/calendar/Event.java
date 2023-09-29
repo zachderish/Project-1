@@ -28,6 +28,15 @@ public class Event implements Comparable<Event> {
         this.duration = duration;
     }
 
+    /**
+     * One-Argument Event Constructor
+     * @param date the Date object associated with the Event
+     */
+    public Event(Date date, Location location){
+        this.date = date;
+        this.location = location;
+    }
+
     private String getEndAM(int minutesInHour, int hoursInAM, int startHour, int startMinute, String amOrPM) {
         int totalMinutes = (startHour * minutesInHour) + startMinute;
         int scheduleMinutes = this.duration + totalMinutes;
@@ -112,7 +121,7 @@ public class Event implements Comparable<Event> {
     }
 
 
-    private boolean dateEquals(Date date) {
+    public boolean dateEquals(Date date) {
         if (this.date.compareTo(date) == 0) {
             return true;
         }
@@ -126,7 +135,7 @@ public class Event implements Comparable<Event> {
         return false;
     }
 
-    private boolean locationEquals (Location location) {
+    public boolean locationEquals (Location location) {
         if (this.location == location) {
             return true;
         }
