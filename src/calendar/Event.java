@@ -1,6 +1,6 @@
 package calendar;
 
-import java.awt.*;
+//import java.awt.*; <---- This will be deleted
 
 /**
  * Create, compare and convert Event objects.
