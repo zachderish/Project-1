@@ -57,15 +57,24 @@ public class Contact {
     public boolean isValid() {
         return validEmail(this.email) && validDepartment(this.department);
     }
-
+   /**
+     * 
+     * @return Department object representing the department associated with contact object
+     */
     public Department getDepartment() {
         return this.department;
     }
-
+  /**
+     * 
+     * @return String indicating the email associated with contact object
+     */
     public String getEmail() {
         return this.email;
     }
-
+  /**
+     * 
+     * Testbed main for testing contact class
+     */
     public static void main(String[] args) {
         Contact contact1 = new Contact(Department.CS, "cs@rutgers.edu");
         Contact contact2 = new Contact(Department.EE, "KFC@rutgers.edu");
