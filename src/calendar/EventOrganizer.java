@@ -1,6 +1,6 @@
 package calendar;
 
-import java.sql.Time;
+//import java.sql.Time; <-- will be deleted
 import java.util.Scanner;
 
 /**
