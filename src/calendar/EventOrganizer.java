@@ -3,12 +3,20 @@ package calendar;
 import java.sql.Time;
 import java.util.Scanner;
 
+/**
+ * Interface to process command lines used in RunProject1
+ * @author Kenrick Eagar, Zachary Derish
+ */
 public class EventOrganizer {
 
-    final String[] COMMANDS = {"A", "R", "P", "PE", "PC", "PD", "Q"};
+    final String[] COMMANDS = {"A", "R", "P", "PE", "PC", "PD", "Q"}; //list of commands
     public static final int NOT_FOUND = -1;
     final Boolean INITIALIZED = false;
-
+    
+     /**
+     * @param String which will represent the command we will be testing for validity
+     * @return will return true (boolean) if input is listed in command array, otherwise false
+     */
     private boolean validCommand(String input) {
         for (String command : COMMANDS) {
             if(input.equals(command)) {
@@ -18,6 +26,10 @@ public class EventOrganizer {
         return false;
     }
 
+    /**
+     * @param input an array of strings representing a single line from system.in
+     * @return will return Date object constructed from input
+     */
     private Date makeDate(String[] input) {
         String[] dateItemized = input[1].split("/");
         int year = Integer.parseInt(dateItemized[2]);
@@ -27,7 +39,11 @@ public class EventOrganizer {
 
         return new Date(year, month, day);
     }
-
+    
+     /**
+     * @param input an array of strings representing a single line from system.in
+     * @return will return Timeslot  enum object constructed from input
+     */
     private Timeslot makeTimeslot(String[] input) {
         if (input[2].equalsIgnoreCase("afternoon")) {
             return Timeslot.AFTERNOON;
@@ -40,7 +56,11 @@ public class EventOrganizer {
         }
         return null;
     }
-
+    
+     /**
+     * @param input an array of strings representing a single line from system.in
+     * @return will return Location enum object constructed from input
+     */
     private Location makeLocation(String[] input) {
         if (input[3].equalsIgnoreCase("hll114")) {
             return Location.HLL114;
@@ -62,7 +82,11 @@ public class EventOrganizer {
         }
         return null;
     }
-
+    
+     /**
+     * @param input an array of strings representing a single line from system.in
+     * @return will return Contact object constructed from input
+     */
     private Contact makeContact(String[] input) {
         Department department = null;
 
@@ -84,7 +108,12 @@ public class EventOrganizer {
 
         return new Contact(department, input[5]);
     }
-
+    
+     /**
+     * @param Event object to check validity of said events' date
+     * @param input an array of strings representing a single line from system.in
+     * @return will return String indicating if 
+     */
     private String validDate(Event event, String[] input) {
         Date date = event.getDate();
         if (!date.isValid()) {
@@ -96,7 +125,11 @@ public class EventOrganizer {
         return "VALID";
     }
 
-
+      /**
+     * @param event the Event object we are planning to add and need to run checks for
+     * @param input an array of strings representing a single line from system.in
+     * @return will return string indidicating if given event is a valid event to add to calendar
+     */
     private String validAdd(Event event, String[] input, EventCalendar calendar) {
         if (calendar.contains(event)) {
             return "The event is already on the calendar.";
@@ -120,7 +153,12 @@ public class EventOrganizer {
         return "VALID";
 
     }
-
+    
+     /**
+     * @param EventCalendar the calendar we will be adding an Event to
+     * @param input an array of strings representing a single line from system.in
+     * @return will return string indidicating if given event was added to the calendar. If not, will return String indicating why event is invalid
+     */
     private String runAdd(EventCalendar calendar, String[] input) {
         Date date = makeDate(input);
         Timeslot timeslot = makeTimeslot(input);
@@ -138,7 +176,11 @@ public class EventOrganizer {
         }
         return validAdd(newEvent, input, calendar);
     }
-
+     /**
+     * @param EventCalendar the calendar we will be removing an Event from
+     * @param input an array of strings representing a single line from system.in
+     * @return will return string indidicating if given event was removed to the calendar. If not, will return String indicating why removal could not occur
+     */
     private String removeEvent(EventCalendar calendar, String[] input){
         Date date = makeDate(input);
         Location location = makeLocation(input);
@@ -162,7 +204,12 @@ public class EventOrganizer {
         }
         return "Event has been removed from the calendar!";
     }
-
+    
+     /**
+     * @param EventCalendar the calendar we will be adding an Event to
+     * @param input an array of strings representing a single line from system.in
+     * @return will return string indicating error or which command was successfully executed
+     */
     private String runCommand(String[] input, EventCalendar calendar) {
         String returnMessage = "";
 
@@ -196,7 +243,10 @@ public class EventOrganizer {
         }
         return returnMessage;
     }
-
+    /**
+     * void method used to in RunProject1 to process and execute commands based off standard input
+     * initiates scanner class and receives input from system.in
+     */
     public void run() {
         Scanner scanner = new Scanner(System.in);
 
