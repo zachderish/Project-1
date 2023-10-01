@@ -52,20 +52,21 @@ public class Contact {
     }
 
     /**
+     * Method will return true when department and email fit criteria, false otherwise
      * @return true when department and email fit criteria, false otherwise
      */
     public boolean isValid() {
         return validEmail(this.email) && validDepartment(this.department);
     }
    /**
-     * 
+     * Method will return Department object representing the department associated with contact object
      * @return Department object representing the department associated with contact object
      */
     public Department getDepartment() {
         return this.department;
     }
   /**
-     * 
+     * Method will return String indicating the email associated with contact object
      * @return String indicating the email associated with contact object
      */
     public String getEmail() {
