@@ -24,12 +24,14 @@ public enum Timeslot{
     }
 
 /**
+* Method will return String representing start hour of Timeslot
 * @return String representing start hour of Timeslot
 */
     public String getStartHour() {
         return this.startHour;
     }
 /**
+* Method will return String representing start minute of Timeslot
 * @return String representing start minute of Timeslot
 */
     public String getStartMinute() {
