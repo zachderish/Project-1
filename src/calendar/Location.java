@@ -26,15 +26,15 @@ public enum Location{
         this.campus = campus;
     }
      /**
-     * 
+     * Method will return String indicating the building of the location
      * @return String indicating the building of the location
      */
     public String getBuilding() {
         return this.building;
     }
     /**
-     * 
-     * @return String indicating the camous of the location
+     * Method will return String indicating the campus of the location
+     * @return String indicating the campus of the location
      */
     public String getCampus() {
         return this.campus;
