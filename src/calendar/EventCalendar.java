@@ -14,6 +14,7 @@ public class EventCalendar {
 
  /**
  * EventCalendar Two-Parameter Constructor
+ * Creates EventCalendar object 
  * @param array of event objects 
  * @param integer representing the number of events 
  */
@@ -89,6 +90,7 @@ public class EventCalendar {
         return false;
     }
 /**
+ * Given an event, method will add it to the eventCalendar events array and return boolean indicating if it was successfully added
  * @param event object that will be added to events array/EventCalendar
  * @return will return a boolean indicating true if event was successfully added to calendar, false otherwise
  */
@@ -105,7 +107,11 @@ public class EventCalendar {
         }
         return false; //something to return. Probably wont ever return this seeing that we can always resize before
     }
-
+/**
+ * Given an event, method will remove it from the eventCalendar events array and return boolean indicating if it was successfully removed
+ * @param event object that will be removed to events array/EventCalendar
+ * @return will return a boolean indicating true if event was successfully removed from events array, false otherwise
+ */
     public boolean remove(Event event) {
         int index = find(event);
         int lastIndex = this.numEvents - 1;
@@ -127,6 +133,7 @@ public class EventCalendar {
 
     }
 /**
+ * Given an event, method will search events array to see if input event exists
  * @param event object that we will be searching for in array
  * @return will return a boolean indicating true if event was found in calendar, false otherwise
  */
