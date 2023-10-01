@@ -22,7 +22,7 @@ public enum Department{
         this.fullName = fullName;
     }
     /**
-     * 
+     * Method will return String indicating full name of department
      * @return String indicating full name of department
      */
     public String getFullName() {
