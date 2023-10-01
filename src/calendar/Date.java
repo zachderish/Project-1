@@ -77,7 +77,7 @@ public class Date implements Comparable<Date>{
     }
 
     /**
-     * Check the Date object to ensure it is being scheduled within 6 month timeframe
+     * Check the Date object to ensure year month and day are all valid inputs
      * @return true if date is within six months and not before current day, false otherwise
      */
     public boolean isValid(){
@@ -92,7 +92,10 @@ public class Date implements Comparable<Date>{
         return validDay_Month;
 
     }
-
+     /**
+     * Check the Date object to ensure it is being scheduled within 6 month timeframe
+     * @return true if date is within six months and not before current day, false otherwise
+     */
     public String within6Months() {
         // create calendar object for the date to be scheduled
         Calendar scheduleDate = Calendar.getInstance();
