@@ -14,6 +14,7 @@ public class EventOrganizer {
     final Boolean INITIALIZED = false;
     
      /**
+     * Check to see if command inputted is a valid executable command
      * @param String which will represent the command we will be testing for validity
      * @return will return true (boolean) if input is listed in command array, otherwise false
      */
@@ -27,6 +28,7 @@ public class EventOrganizer {
     }
 
     /**
+     * Create and return Date object extracted from command line
      * @param input an array of strings representing a single line from system.in
      * @return will return Date object constructed from input
      */
@@ -41,6 +43,7 @@ public class EventOrganizer {
     }
     
      /**
+     * Create and return Timeslot enum object extracted from command line
      * @param input an array of strings representing a single line from system.in
      * @return will return Timeslot  enum object constructed from input
      */
@@ -58,6 +61,7 @@ public class EventOrganizer {
     }
     
      /**
+     * Create and return Location enum object extracted from command line
      * @param input an array of strings representing a single line from system.in
      * @return will return Location enum object constructed from input
      */
@@ -84,6 +88,7 @@ public class EventOrganizer {
     }
     
      /**
+     * Create and return Contact enum object extracted from command line
      * @param input an array of strings representing a single line from system.in
      * @return will return Contact object constructed from input
      */
