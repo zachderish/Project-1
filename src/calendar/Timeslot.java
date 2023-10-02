@@ -23,26 +23,19 @@ public enum Timeslot{
             this.startMinute = startMinute;
     }
 
-/**
-* Method will return String representing start hour of Timeslot
-* @return String representing start hour of Timeslot
-*/
+    /**
+    * Method will return String representing start hour of Timeslot
+    * @return String representing start hour of Timeslot
+    */
     public String getStartHour() {
         return this.startHour;
     }
-/**
-* Method will return String representing start minute of Timeslot
-* @return String representing start minute of Timeslot
-*/
+
+    /**
+    * Method will return String representing start minute of Timeslot
+    * @return String representing start minute of Timeslot
+    */
     public String getStartMinute() {
         return this.startMinute;
-    }
-/**
-* Testbed main to test timeslot class
-*/
-    public static void main(String[] args) {
-        for (Timeslot timeslot : Timeslot.values()) {
-            System.out.println(timeslot + ": " + timeslot.getStartHour() + ":" + timeslot.getStartMinute());
-        }
     }
 }

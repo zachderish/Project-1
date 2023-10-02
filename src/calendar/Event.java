@@ -1,7 +1,5 @@
 package calendar;
 
-//import java.awt.*; <---- This will be deleted
-
 /**
  * Create, compare and convert Event objects.
  * @author Kenrick Eagar, Zachary Derish
@@ -287,6 +285,10 @@ public class Event implements Comparable<Event> {
         System.out.println(test4);
     }
 
+    /**
+     * Test for two equal Event object
+     * @return String result of equal Event objects
+     */
     private static String eventsEqual() {
         Date date1 = new Date(2023, 11, 29);
         Contact contact1 = new Contact(Department.CS, "cs@rutgers.edu");
@@ -301,6 +303,10 @@ public class Event implements Comparable<Event> {
 
     }
 
+    /**
+     * Test for two non-equal date Event objects.
+     * @return String result of two non-equal Event objects.
+     */
     private static String dateNotEqual () {
         Date date1 = new Date(2024, 2, 17);
         Contact contact1 = new Contact(Department.CS, "cs@rutgers.edu");
@@ -314,6 +320,10 @@ public class Event implements Comparable<Event> {
         return returnMessage;
     }
 
+    /**
+     * Test for two non-equal time Event objects.
+     * @return String result of two non-equal Event objects.
+     */
     private static String timeNotEqual () {
         Date date1 = new Date(2023, 11, 29);
         Contact contact1 = new Contact(Department.CS, "cs@rutgers.edu");
@@ -327,6 +337,10 @@ public class Event implements Comparable<Event> {
         return returnMessage;
     }
 
+    /**
+     * Test for two non-equal location Event objects.
+     * @return String result of two non-equal Event objects.
+     */
     private static String locationNotEqual () {
         Date date1 = new Date(2023, 11, 29);
         Contact contact1 = new Contact(Department.CS, "cs@rutgers.edu");

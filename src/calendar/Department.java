@@ -21,18 +21,13 @@ public enum Department{
     Department(String fullName) {
         this.fullName = fullName;
     }
+
     /**
      * Method will return String indicating full name of department
      * @return String indicating full name of department
      */
     public String getFullName() {
         return fullName;
-    }
-
-    public static void main(String[] args) {
-        for (Department department : Department.values()) {
-            System.out.println(department + ": " + department.getFullName());
-        }
     }
 
 }

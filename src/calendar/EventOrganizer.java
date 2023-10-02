@@ -1,6 +1,5 @@
 package calendar;
 
-//import java.sql.Time; <-- will be deleted
 import java.util.Scanner;
 
 /**
@@ -15,7 +14,7 @@ public class EventOrganizer {
     
      /**
      * Check to see if command inputted is a valid executable command
-     * @param String which will represent the command we will be testing for validity
+     * @param input String which will represent the command we will be testing for validity
      * @return will return true (boolean) if input is listed in command array, otherwise false
      */
     private boolean validCommand(String input) {
@@ -116,7 +115,7 @@ public class EventOrganizer {
     
      /**
      * Checker to see if given event contains a valid date and returns string indicating VALID or an error message
-     * @param Event object to check validity of said events' date
+     * @param event Event object to check validity of said events' date
      * @param input an array of strings representing a single line from system.in
      * @return will return String indicating if 
      */
@@ -135,7 +134,7 @@ public class EventOrganizer {
      * Checker to see if given event can be added to the eventCalendar
      * @param event the Event object we are planning to add and need to run checks for
      * @param input an array of strings representing a single line from system.in
-     * @return will return string indidicating if given event is a valid event to add to calendar, if not will display error message
+     * @return will return string indicating if given event is a valid event to add to calendar, if not will display error message
      */
     private String validAdd(Event event, String[] input, EventCalendar calendar) {
         if (calendar.contains(event)) {
@@ -163,9 +162,9 @@ public class EventOrganizer {
     
      /**
      * Creates event object extracted from command line input and adds it to EventCalendar events array
-     * @param EventCalendar the calendar we will be adding an Event to
+     * @param calendar EventCalendar the calendar we will be adding an Event to
      * @param input an array of strings representing a single line from system.in
-     * @return will return string indidicating if given event was added to the calendar. If not, will return String indicating why event is invalid
+     * @return will return string indicating if given event was added to the calendar. If not, will return String indicating why event is invalid
      */
     private String runAdd(EventCalendar calendar, String[] input) {
         Date date = makeDate(input);
@@ -184,11 +183,12 @@ public class EventOrganizer {
         }
         return validAdd(newEvent, input, calendar);
     }
+
      /**
      * Removes specified event object from EventCalendar events array based off input command line
-     * @param EventCalendar the calendar we will be removing an Event from
+     * @param calendar the calendar we will be removing an Event from
      * @param input an array of strings representing a single line from system.in
-     * @return will return string indidicating if given event was removed to the calendar. If not, will return String indicating why removal could not occur
+     * @return will return string indicating if given event was removed to the calendar. If not, will return String indicating why removal could not occur
      */
     private String removeEvent(EventCalendar calendar, String[] input){
         Date date = makeDate(input);
@@ -216,7 +216,7 @@ public class EventOrganizer {
     
      /**
      * Given a command extracted from command line input, method will verify and run the specified command
-     * @param EventCalendar the calendar we will be adding an Event to
+     * @param calendar EventCalendar the calendar we will be adding an Event to
      * @param input an array of strings representing a single line from system.in
      * @return will return string indicating error or which command was successfully executed
      */
@@ -253,6 +253,7 @@ public class EventOrganizer {
         }
         return returnMessage;
     }
+
     /**
      * Method to extract information from standard input and execute commands
      * void method used to in RunProject1 to process and execute commands based off standard input

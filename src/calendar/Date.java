@@ -6,7 +6,6 @@ import java.util.Calendar;
  * Define the abstract data type Date and its methods
  * @author Kenrick Eagar, Zachary Derish
  */
-
 public class Date implements Comparable<Date>{
 
     private int year;
@@ -140,13 +139,17 @@ public class Date implements Comparable<Date>{
         return 0;
     }
 
+    /**
+     * Getter method for Date object
+     * @return String format of this Date object
+     */
     public String getDate() {
         String finalDate = (this.month+1) + "/" + this.day + "/" + this.year;
         return finalDate;
     }
 
     /**
-     * Testbed main for isValid()
+     * Testbed main for isValid().
      * @param args
      */
     public static void main(String[] args) {
@@ -161,16 +164,28 @@ public class Date implements Comparable<Date>{
 
     }
 
+    /**
+     * Test for a valid Date object.
+     * @return String result for a valid test.
+     */
     private static String isValidDate() {
         Date date1 = new Date(2024, 2, 29);
         return "* Running isValidDate() *\n" + date1.getDate()  + "\nisValid() result: " + date1.isValid();
     }
 
+    /**
+     * Test for an invalid month Date object.
+     * @return String result for a test with an invalid month.
+     */
     private static String isWrongMonth() {
         Date date1 = new Date(2023, 13, 18);
         return "* Running isWrongMonth() *\n" + date1.getDate()  + "\nisValid() result: " + date1.isValid();
     }
 
+    /**
+     * Test for an invalid day in a non-leap year Date object.
+     * @return String result for a test with an invalid day in a non-leap year.
+     */
     private static String isWrongDay_NotLeapYear() {
         Date date1 = new Date(2023, 2, 29);
         return "* Running isWrongDay_NotLeapYear() *\n" + date1.getDate()  + "\nisValid() result: " + date1.isValid();

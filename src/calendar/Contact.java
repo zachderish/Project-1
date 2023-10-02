@@ -72,18 +72,4 @@ public class Contact {
     public String getEmail() {
         return this.email;
     }
-  /**
-     * 
-     * Testbed main for testing contact class
-     */
-    public static void main(String[] args) {
-        Contact contact1 = new Contact(Department.CS, "cs@rutgers.edu");
-        Contact contact2 = new Contact(Department.EE, "KFC@rutgers.edu");
-        System.out.println("contact1 valid? " + contact1.isValid());
-        System.out.println("contact2 valid? " + contact2.isValid());
-        System.out.println("contact1 info: " + contact1.getDepartment() + ", " + contact1.getEmail());
-        System.out.println("contact2 info: " + contact2.getDepartment() + ", " + contact2.getEmail());
-    }
-
-
 }

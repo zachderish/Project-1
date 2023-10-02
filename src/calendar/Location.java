@@ -25,6 +25,7 @@ public enum Location{
         this.building = building;
         this.campus = campus;
     }
+
      /**
      * Method will return String indicating the building of the location
      * @return String indicating the building of the location
@@ -32,6 +33,7 @@ public enum Location{
     public String getBuilding() {
         return this.building;
     }
+
     /**
      * Method will return String indicating the campus of the location
      * @return String indicating the campus of the location
@@ -39,13 +41,5 @@ public enum Location{
     public String getCampus() {
         return this.campus;
     }
-  /**
-     * TestBed main method used to test location class
-     * 
-     */
-    public static void main(String[] args) {
-        for (Location location : Location.values()) {
-            System.out.println(location + ": " + location.getBuilding() + ", " + location.getCampus());
-        }
-    }
+
 }
